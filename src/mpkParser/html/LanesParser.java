@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by MQ on 2017-05-10.
  */
+
 public class LanesParser {
     private final String urlAddress = "http://rozklady.mpk.krakow.pl/?lang=PL&rozklad=20170510";
 

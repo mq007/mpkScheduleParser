@@ -1,5 +1,6 @@
 package mpkParser.html;
 
+import mpkParser.ActualDate;
 import mpkParser.LaneStopInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,36 +23,12 @@ public class ScheduleParser {
     private String lane;
 
     public ScheduleParser(){
-        todayDate = getDate();
+        todayDate = ActualDate.getDate();
         lane = "";
     }
 
-    private String getDate(){
-        Date today = new Date();
-        LocalDate localDate = today.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String year  = Integer.toString(localDate.getYear());
-        String month = Integer.toString(localDate.getMonthValue());
-        String day   = Integer.toString(localDate.getDayOfMonth());
-
-        String date = year;
-
-        if(month.length() == 1){
-            date = date + "0" + month;
-        }else{
-            date = date + month;
-        }
-
-        if(day.length() == 1){
-            date = date + "0" + day;
-        }else{
-            date = date + day;
-        }
-
-        return date;
-    }
-
     private String getUrlAddress(String lane, int direction, int num){
-        return "http://rozklady.mpk.krakow.pl/?lang=PL&akcja=index&rozklad=" + getDate() + "&linia=" + lane + "__" + direction + "__" + num;
+        return "http://rozklady.mpk.krakow.pl/?lang=PL&akcja=index&rozklad=" + ActualDate.getDate() + "&linia=" + lane + "__" + direction + "__" + num;
     }
 
     public List<String> getStopsNames(int direction){

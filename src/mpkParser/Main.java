@@ -23,11 +23,11 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //LanesParser lp = new LanesParser();
-        //lp.getLanesFromSite();
-        ScheduleParser sp = new ScheduleParser();
-        sp.setLane("1");
-        sp.getScheduleForLane(1);
+        LanesParser lp = new LanesParser();
+        lp.getLanesFromSite();
+        //ScheduleParser sp = new ScheduleParser();
+        //sp.setLane("1");
+        //sp.getScheduleForLane(1);
         //launch(args);
     }
 }
