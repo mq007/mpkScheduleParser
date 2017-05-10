@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import mpkParser.html.LanesParser;
+import mpkParser.html.ScheduleParser;
 
 public class Main extends Application {
 
@@ -22,8 +23,11 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        LanesParser lp = new LanesParser();
-        lp.getLanesFromSite();
+        //LanesParser lp = new LanesParser();
+        //lp.getLanesFromSite();
+        ScheduleParser sp = new ScheduleParser();
+        sp.setLane("1");
+        sp.getScheduleForLane(1);
         //launch(args);
     }
 }

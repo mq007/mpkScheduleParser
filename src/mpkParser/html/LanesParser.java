@@ -1,5 +1,6 @@
 package mpkParser.html;
 
+import mpkParser.Lanes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,17 +14,17 @@ import java.util.List;
  * Created by MQ on 2017-05-10.
  */
 public class LanesParser {
-    private String urlAdress = "http://rozklady.mpk.krakow.pl/?lang=PL&rozklad=20170510";
+    private final String urlAddress = "http://rozklady.mpk.krakow.pl/?lang=PL&rozklad=20170510";
 
     public void getLanesFromSite(){
         Document doc = null;
         try {
-            doc = Jsoup.connect(urlAdress).get();
+            doc = Jsoup.connect(urlAddress).get();
             Elements header = doc.select(".t_info_left");
             Elements data = doc.select(".linia_table_left");
 
             List<String> headers = new ArrayList<>();
-            List<String> laneNumber = new ArrayList<>();
+            List<String> laneNumbers = new ArrayList<>();
 
             String text = "";
 
@@ -38,15 +39,19 @@ public class LanesParser {
 
             for(Element l : data){
                 text = l.text();
-                laneNumber.add(text);
+                laneNumbers.add(text);
                 System.out.println(text);
             }
+
+            setTramsAndBusesNumbers(headers, laneNumbers);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void setTramsAndBusesNumbers(List<String> header, List<String> laneNumber){
-
+        for(int i=0; i< header.size(); ++i){
+            Lanes.setLanesNumbers(header.get(i), laneNumber.get(i));
+        }
     }
 }
