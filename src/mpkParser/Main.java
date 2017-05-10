@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import mpkParser.html.LanesParser;
 
 public class Main extends Application {
 
@@ -21,7 +22,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        LanesParser lp = new LanesParser();
+        lp.getLanesFromSite();
+        //launch(args);
     }
 }
 
