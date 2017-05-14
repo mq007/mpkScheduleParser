@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import mpkParser.html.LanesParser;
 import mpkParser.html.ScheduleParser;
 
+import java.util.List;
+
 public class Main extends Application {
 
     private Stage window;
@@ -23,11 +25,23 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        //DataAdder.truncateTable("rozklad_weekday");
+        //DataAdder.truncateTable("rozklad_saturday");
+        //DataAdder.truncateTable("rozklad_sunday");
+
+        long startTime = System.currentTimeMillis();
         LanesParser lp = new LanesParser();
         lp.getLanesFromSite();
-        //ScheduleParser sp = new ScheduleParser();
-        //sp.setLane("1");
-        //sp.getScheduleForLane(1);
+        List<String> laneList = lp.lanesToOneList();
+        ScheduleParser sp = new ScheduleParser();
+        for(int i=0; i<1; ++i){
+            sp.getScheduleForLane(laneList.get(i), 0);
+            sp.getScheduleForLane(laneList.get(i), 1);
+        }
+
+        long stopTime = System.currentTimeMillis() - startTime;
+        System.out.println((double)(stopTime/1000.0));
+
         //launch(args);
     }
 }

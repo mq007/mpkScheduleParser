@@ -8,9 +8,7 @@ import java.util.List;
  */
 public class Lanes {
 
-    private Lanes(){
-
-    }
+    private Lanes(){};
 
     private static List<String> tramDay = new ArrayList<>();
     private static List<String> tramNight = new ArrayList<>();
